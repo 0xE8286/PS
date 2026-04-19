@@ -9,9 +9,6 @@ int dp[100001][M_EXP];
 int first[100000];
 
 int main() {
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
 
 	cin >> N >> K >> M;
 
@@ -28,9 +25,10 @@ int main() {
 		}
 	}
 
+	M--;
 	for (int i = 0; i < N; i++) {
 		int x = first[i];
-		int t = M - 1;
+		int t = M;
 		
 		for (int j = M_EXP - 1; j >= 0; j--) {
 			int exp_time = 1 << j;
