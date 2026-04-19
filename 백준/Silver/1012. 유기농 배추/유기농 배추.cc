@@ -21,16 +21,21 @@ void dfs(int y, int x) {
 	}
 }
 
+void init() {
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			map[i][j] = 0;
+		}
+	}
+}
+
 int main(void) {
-
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	int T;
 	cin >> T;
 	
 	for (int tc = 0; tc < T; tc++) {
-	
+		
+		init();
 		
 		cin >> M >> N >> K;
 
