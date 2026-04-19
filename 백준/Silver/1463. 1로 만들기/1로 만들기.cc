@@ -1,32 +1,27 @@
 #include <iostream>
-
-#define LARGE 987654321
-
+#include <cmath>
 using namespace std;
 
 int N;
-int p[1000001];
+int dp[1000001];
 
 int main() {
+
 	cin >> N;
 
-	for (int i = 1; i <= N; i++) {
-		p[i] = LARGE;
+	dp[1] = 0;
+	dp[2] = 1;
+	dp[3] = 1;
+
+	for (int i = 4; i <= N; i++) {
+		int a = 99999999;
+		if (i % 3 == 0 && dp[i / 3] + 1 < a) a = dp[i / 3] + 1;
+		if (i % 2 == 0 && dp[i / 2] + 1 < a) a = dp[i / 2] + 1;
+		if (dp[i - 1] + 1 < a) a = dp[i - 1] + 1;
+		dp[i] = a;
 	}
 
-	p[N] = 0;
+	cout << dp[N];
 
-	for (int i = N; i >= 2; i--) {
-		if (i % 3 == 0 && (int)i / 3 > 0) {
-			p[i / 3] = min(p[i / 3], p[i] + 1);
-		}
-		if (i % 2 == 0 && (int)i / 2 > 0) {
-			p[i / 2] = min(p[i / 2], p[i] + 1);
-		}
-		p[i - 1] = min(p[i - 1], p[i] + 1);
-	}
-
-	cout << p[1];
-	
 	return 0;
 }
