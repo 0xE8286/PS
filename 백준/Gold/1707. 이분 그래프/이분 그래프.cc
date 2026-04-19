@@ -26,10 +26,6 @@ void clear() {
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> T;
 	for (int tc = 0; tc < T; tc++) {
 
