@@ -2,26 +2,25 @@
 using namespace std;
 
 int gcd(int a, int b) {
-    int r = a % b;
-    if (r == 0) {
-        return b;
-    }
-    return gcd(b, r);
+	if (b == 0) {
+		return a;
+	}
+	return gcd(b, a % b);
 }
 
 int main(void) {
 
-    cin.tie(NULL);
-    ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	
+	int T;
+	int a, b;
 
-    int T;
-    int A, B;
-
-    cin >> T;
-
-    while (T--) {
-        cin >> A >> B;
-        cout << (A * B) / gcd(A, B) << "\n";
-    }
-    return 0;
+	cin >> T;
+	
+	while (T--) {
+		cin >> a >> b;
+		cout << a * b / gcd(a, b) << endl;
+	}
+	return 0;
 }
