@@ -1,55 +1,64 @@
 #include <iostream>
+#include <tuple>
 #include <queue>
-#include <list>
-#include <vector>
+#define LARGE 987654321
+
 using namespace std;
-using route = pair<int, int>;
 
-class Point {
-public:
-	list<route> linked;
-	int index;
-	int cost;
-};
+int map[1001][1001];
+int cost[1001];
+int visit[1001];
 
-int N, M, ans;
-vector<Point> vec(1001);
-vector<bool> check(1001);
+int N, M;
+int S, E;
+int from, to, weight;
+typedef pair<int, int> e;
+
 int main() {
-	cin >> N;
-	cin >> M;
+
+	cin.tie(NULL);
+	cout.tie(NULL);
+	ios::sync_with_stdio(false);
+
+	cin >> N >> M;
+
+	for (int i = 0; i <= N; i++) {
+		for (int j = 0; j <= N; j++) {
+			map[i][j] = -1;
+		}
+	}
+	
+	for (int i = 0; i < M; i++) {
+		cin >> from >> to >> weight;
+		if (map[from][to] > -1 && map[from][to] < weight) continue;
+		map[from][to] = weight;
+	}
 
 	for (int i = 1; i <= N; i++) {
-		vec[i].index = i;
+		cost[i] = LARGE;
 	}
-	int sp, ep, cost;
-	for (int i = 0; i < M; i++) {
-		cin >> sp >> ep >> cost;
-		vec[sp].linked.push_back(route(cost, ep));
-	}
-	cin >> sp >> ep;
 
-	priority_queue<route, vector<route>, greater<route>> pq;
+	cin >> S >> E;
 
-	pq.push(route(0, sp));
-	while (!pq.empty()) {
-		int cost = pq.top().first;
-		int point = pq.top().second; pq.pop();
-		if (check[point]) continue;
-		check[point] = true;
+	cost[S] = 0;
+	priority_queue<e, vector<e>, greater<e>> q;
+	q.push(e(0, S));
 
-		if (point == ep) {
-			ans = cost;
-			break;
-		}
+	while (!q.empty()) {
+		e now = q.top(); q.pop();
+		int v = now.second;
+		visit[v] = 1;
 
-		for (route next : vec[point].linked) {
-			if (check[next.second] == 0) {
-				pq.push(route(cost + next.first, next.second));
+		for (int i = 1; i <= N; i++) {
+			if (visit[i] == 0 && map[v][i] > -1) {
+				int next_cost = now.first + map[v][i];
+				if (next_cost < cost[i]) {
+					cost[i] = next_cost;
+					q.push(e(next_cost, i));
+				}
 			}
 		}
 	}
-	cout << ans;
-
+	cout << cost[E] << endl;
 	return 0;
 }
