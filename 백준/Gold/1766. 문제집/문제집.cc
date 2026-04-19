@@ -11,10 +11,6 @@ vector<int> answer;
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> N >> M;
 	for (int i = 0; i < M; i++) {
 		cin >> pre >> nxt;
