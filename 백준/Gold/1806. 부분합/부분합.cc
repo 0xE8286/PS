@@ -7,10 +7,6 @@ int min_length = 100001;
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> N >> S;
 
 	for (int i = 0; i < N; i++) {
