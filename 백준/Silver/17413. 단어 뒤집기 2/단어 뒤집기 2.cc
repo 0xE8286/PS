@@ -15,9 +15,6 @@ void pop_print() {
 }
 
 int main() {
-
-	cin.tie(NULL); cout.tie(NULL);
-	ios::sync_with_stdio(false);
 	
 	getline(cin, text);
 
@@ -38,7 +35,6 @@ int main() {
 			cout << c;
 			continue;
 		}
-		//==================
 
 		if (taging) {
 			cout << c;
