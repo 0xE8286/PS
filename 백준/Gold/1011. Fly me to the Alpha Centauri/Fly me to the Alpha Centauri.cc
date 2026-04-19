@@ -10,9 +10,6 @@ int square(int x) {
 }
 
 int main() {
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
 
 	cin >> T;
 	for (int i = 0; i < T; i++) {
