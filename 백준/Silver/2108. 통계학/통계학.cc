@@ -5,11 +5,6 @@
 
 using namespace std;
 
-vector<int> number;
-vector<int> sorted;
-int N;
-int input;
-
 int average(vector<int> param) {
 	int sum = 0;
 	int size = param.size();
@@ -32,12 +27,8 @@ int second_mode(vector<int> param) {
 	}
 	vector<int> modes;
 	for (int i = 0; i < 8001; i++) {
-		int org = i - 4000;
-		for (int j = 0; j < count[i]; j++) {
-			sorted.push_back(org);
-		}
 		if (count[i] == mode_cnt) {
-			modes.push_back(org);
+			modes.push_back(i - 4000);
 		}
 	}
 	if (modes.size() == 1) {
@@ -56,23 +47,23 @@ int main() {
 
 	ios::sync_with_stdio(false);
 
+	vector<int> vec;
+	int N;
+	int num;
+
 	cin >> N;
 
 	for (int i = 0; i < N; i++) {
-		cin >> input;
-		number.push_back(input);
+		cin >> num;
+		vec.push_back(num);
 	}
+	sort(vec.begin(), vec.end());
 
-	int ave = average(number);
-	int mode = second_mode(number);
-	int mid = sorted[(sorted.size() - 1) / 2];
-	int diff = sorted[sorted.size() - 1] - sorted[0];
-
-	cout << ave << endl;
-	cout << mid << endl;
-	cout << mode << endl;
-	cout << diff << endl;
 	
+	cout << average(vec) << "\n";
+	cout << vec[(vec.size() - 1) / 2] << "\n";
+	cout << second_mode(vec) << "\n";
+	cout << vec[vec.size() - 1] - vec[0] << "\n";
 
 	return 0;
 }
