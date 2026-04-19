@@ -1,23 +1,28 @@
 #include <iostream>
 using namespace std;
 
+int way[11];
 int T, N;
-int dp[11];
 
 int main() {
 
-	cin >> T;
-	for (int tc = 0; tc < T; tc++) {
-		cin >> N;
-		
-		dp[1] = 1;
-		dp[2] = 2;
-		dp[3] = 4;
+	cin.tie(nullptr);
+	cout.tie(nullptr);
+	ios::sync_with_stdio(false);
 
-		for (int i = 4; i <= N; i++) {
-			dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
-		}
-		cout << dp[N] << '\n';
+	way[1] = 1;
+	way[2] = 2;
+	way[3] = 4;
+
+	for (int i = 4; i <= 10; i++) {
+		way[i] = way[i-1] + way[i-2] + way[i-3];
 	}
+
+	cin >> T;
+	for (int i = 0; i < T; i++) {
+		cin >> N;
+		cout << way[N] << '\n';
+	}
+
 	return 0;
 }
