@@ -20,8 +20,14 @@ void merge(int a, int b) {
 	if (a == b) {
 		return;
 	}
-	p[a] += p[b];
-	p[b] = a;
+	if (p[a] < p[b]) {
+		p[a] += p[b];
+		p[b] = a;
+	}
+	else {
+		p[b] += p[a];
+		p[a] = b;
+	}
 }
 
 int main() {
