@@ -12,10 +12,6 @@ int sum[501];
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	queue<int> q;
 	int base;
 
