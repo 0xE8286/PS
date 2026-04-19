@@ -7,7 +7,7 @@ vector<int> graph[1001];
 int milk[1001];
 bool visit[1001];
 
-int deliver(int curr, int end, int cnt) {
+int deliver(int curr, int end, int cnt, bool* visit) {
 	if (curr == end) {
 		return cnt;
 	}
@@ -15,7 +15,7 @@ int deliver(int curr, int end, int cnt) {
 		if (visit[next] == 0) {
 			visit[next] = 1;
 			
-			int result = deliver(next, end, cnt + 1);
+			int result = deliver(next, end, cnt + 1, visit);
 			milk[next] += result;
 			
 			if (result > 0) {
@@ -51,7 +51,7 @@ int main() {
 			fill(visit, visit + N + 1, false);
 			visit[a] = true;
 
-			deliver(a, b, 0);
+			deliver(a, b, 0, visit);
 		}
 		else {
 			cin >> x;
