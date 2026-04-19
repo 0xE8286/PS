@@ -5,7 +5,6 @@ using namespace std;
 int N, Q;
 vector<int> graph[1001];
 int milk[1001];
-bool visit[1001];
 
 int deliver(int curr, int end, int cnt, bool* visit) {
 	if (curr == end) {
@@ -28,10 +27,6 @@ int deliver(int curr, int end, int cnt, bool* visit) {
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> N;
 	int a, b;
 
@@ -48,7 +43,9 @@ int main() {
 		if (cmd == 1) {
 			cin >> a >> b;
 			
+			bool visit[1001];
 			fill(visit, visit + N + 1, false);
+			
 			visit[a] = true;
 
 			deliver(a, b, 0, visit);
