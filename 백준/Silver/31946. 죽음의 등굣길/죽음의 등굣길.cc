@@ -4,6 +4,13 @@
 using namespace std;
 
 int N, M, X;
+
+int dy[4] = { -1, 0, 1, 0 };
+int dx[4] = { 0, -1, 0, 1 };
+
+int ddy[4] = { -1, -1, 1, 1 };
+int ddx[4] = { -1, 1, -1, 1 };
+
 int map[100][100];
 bool visit[100][100];
 
@@ -46,10 +53,11 @@ int main() {
 
 		for (int ny = 0; ny < N; ny++) {
 			for (int nx = 0; nx < M; nx++) {
-				if (getDist(y, x, ny, nx) > X) continue;
 				if (!isValid(ny, nx)) continue;
 				if (visit[ny][nx]) continue;
 				if (map[ny][nx] != C) continue;
+				if (getDist(y, x, ny, nx) > X) continue;
+
 				if (ny == N - 1 && nx == M - 1) {
 					cout << "ALIVE";
 					return 0;
