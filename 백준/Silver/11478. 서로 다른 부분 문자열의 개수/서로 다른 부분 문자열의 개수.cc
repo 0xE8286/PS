@@ -6,10 +6,6 @@ string input;
 set<string> str;
 
 int main() {
-
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
 	
 	cin >> input;
 	
