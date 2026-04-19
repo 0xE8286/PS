@@ -5,7 +5,7 @@
 using namespace std;
 
 const int MOD = 10000000007;
-const int BASE = 271;
+const int BASE = 127;
 
 vector<int> rabinKarp(const string& text, const string& pattern) {
     int n = text.size();
