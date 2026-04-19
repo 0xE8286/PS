@@ -60,10 +60,10 @@ int main() {
 	sort(vec.begin(), vec.end());
 
 	
-	cout << average(vec) << "\n";
-	cout << vec[(vec.size() - 1) / 2] << "\n";
-	cout << second_mode(vec) << "\n";
-	cout << vec[vec.size() - 1] - vec[0] << "\n";
+	cout << average(vec) << endl;
+	cout << vec[(vec.size() - 1) / 2] << endl;
+	cout << second_mode(vec) << endl;
+	cout << vec[vec.size() - 1] - vec[0] << endl;
 
 	return 0;
 }
