@@ -19,6 +19,7 @@ int second_mode(vector<int> param) {
 	for (int i = 0; i < param.size(); i++) {
 		count[4000 + param[i]]++;
 	}
+
 	int mode_cnt = 0;
 	for (int i = 0; i < 8001; i++) {
 		if (count[i] > mode_cnt) {
@@ -31,6 +32,8 @@ int second_mode(vector<int> param) {
 			modes.push_back(i - 4000);
 		}
 	}
+	
+
 	if (modes.size() == 1) {
 		return modes[0];
 	}
@@ -41,11 +44,6 @@ int second_mode(vector<int> param) {
 }
 
 int main() {
-
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-	ios::sync_with_stdio(false);
 
 	vector<int> vec;
 	int N;
