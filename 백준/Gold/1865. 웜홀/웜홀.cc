@@ -32,7 +32,7 @@ int main() {
 		}
 
 		int dist[501];
-		fill(dist, dist + N + 1, 0);
+		fill(dist, dist + N + 1, LARGE);
 
 		bool isCycle = false;
 
