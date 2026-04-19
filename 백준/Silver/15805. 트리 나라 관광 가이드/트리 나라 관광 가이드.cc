@@ -7,11 +7,9 @@ int N, K;
 int parent[200001];
 
 int main() {
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
 
 	cin >> N;
+	
 	fill(parent, parent + N, NO_VISIT);
 	
 	int curr, prev;
@@ -30,7 +28,7 @@ int main() {
 		prev = curr;
 	}
 
-	cout << K + 1 << '\n';
+	cout << K + 1<< '\n';
 	
 	for (int i = 0; i <= K; i++) {
 		cout << parent[i] << ' ';
