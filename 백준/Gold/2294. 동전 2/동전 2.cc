@@ -26,13 +26,9 @@ int main() {
 	for (int i = 1; i <= K; i++) {
 		ans[i] = MAX;
 	}
-	
-	for (int i = 1; i <= K; i++) {
-		for (auto iter = wallet.begin(); iter != wallet.end(); iter++) {
-			if (i - *iter < 0) continue;
-			if (ans[i - *iter] + 1 < ans[i]) {
-				ans[i] = ans[i - *iter] + 1;
-			}
+	for (auto iter = wallet.begin(); iter != wallet.end(); iter++) {
+		for (int i = *iter; i <= K; i++) {
+			ans[i] = min(ans[i - *iter] + 1, ans[i]);
 		}
 	}
 
