@@ -80,15 +80,18 @@ int main (void) {
 	findFeed();
 	while (candidate.size() > 0) {
 		sort(candidate.begin(), candidate.end());
+		
 		pos target = candidate[0];
 		map[target.y][target.x] = 0;
+		route.push(target);
 		cnt++;
+
 		if (cnt == kg) {
 			kg++;
 			cnt = 0;
 		}
-		lastDistance = target.distance;
-		route.push(target);
+
+		lastDistance = candidate[0].distance;
 		findFeed();
 	}
 	cout << lastDistance << endl;
