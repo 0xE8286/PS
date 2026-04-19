@@ -10,9 +10,6 @@ int indegree[32001];
 vector<int> edge[32001];
 
 int main() {
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
 
 	cin >> N >> M;
 	
