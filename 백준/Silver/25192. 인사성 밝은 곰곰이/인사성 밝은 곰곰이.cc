@@ -1,32 +1,31 @@
-#include <bits/stdc++.h>
-#include <unordered_set>
+#include<iostream>
+#include<unordered_map>
 using namespace std;
 
-int N, cnt;
-unordered_set<string> emoticon;
+int N;
+int sum;
 
 int main() {
-	cin.tie(nullptr);
-	cout.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	ios::sync_with_stdio(false);
 
+	string log;
+	unordered_map<string, bool> hi_list;
+
 	cin >> N;
-	string user;
-	
 	for (int i = 0; i < N; i++) {
-		cin >> user;
-		if (user == "ENTER") {
-			emoticon.erase(emoticon.begin(), emoticon.end());
+		cin >> log;
+		if (log == "ENTER") {
+			sum += hi_list.size();
+			hi_list.erase(hi_list.begin(), hi_list.end());
 		}
 		else {
-			if (emoticon.find(user) == emoticon.end()) {
-				emoticon.insert(user);
-				cnt++;
-			}
+			hi_list[log] = true;
 		}
 	}
-	
-	cout << cnt;
+	sum += hi_list.size();
+	cout << sum;
 
 	return 0;
 }
