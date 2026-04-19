@@ -1,117 +1,86 @@
-#include <iostream>
+#include <stdio.h>
 #include <algorithm>
 using namespace std;
+typedef pair<int, int> pii;
+struct Heap {
+    int n;
+    pii v[100009];
+    int index[100009];
+    void inil() {
+        n = 1;
+    }
+    void push(int value, int i) {
+        v[n] = pii(value, i);
+        index[i] = n;
+        n++;
+        update(n - 1);
+    }
+   
+    pii top() { return v[1]; }
+    void update_direct(int i, int vv) {
+        v[index[i]].first = vv;
+        update(index[i]);
+    }
+    void update(int ti) {
+        //update
+        while (ti > 1) {
+            int ri = ti / 2;
+            if (v[ri] > v[ti]) {
+                pii tmp = v[ri];
+                v[ri] = v[ti];
+                v[ti] = tmp;
+                index[v[ti].second] = ti;
+                index[v[ri].second] = ri;
+                ti = ri;
+            }
+            else
+                break;
+        }
 
-struct node {
-	int index;
-	int value;
-	bool operator <(node another) {
-		if (value < another.value) return true;
-		if (value == another.value && index < another.index) return true;
-		return false;
-	}
+
+        //downdate
+        while (ti < n) {
+            int pi = ti * 2;
+            int qi = ti * 2 + 1;
+            int ri = pi;
+            if (pi >= n)break;
+            if (qi >= n)ri = pi;
+            else {
+                if (v[ri] > v[qi])ri = qi;
+            }
+            if (v[ti] > v[ri]) {
+                pii tmp = v[ri];
+                v[ri] = v[ti];
+                v[ti] = tmp;
+                index[v[ti].second] = ti;
+                index[v[ri].second] = ri;
+                ti = ri;
+            }
+            else
+                break;
+        }
+    }
 };
-
-struct heap {
-	node tree[100007];
-	int heap_index[100007];
-	int size;
-
-	void init() {
-		size = 0;
-		tree[0].value = 2147483647;
-	}
-
-	void update(int curr) {
-		int parent;
-		while (curr > 1) {
-			parent = curr / 2;
-			if (tree[curr] < tree[parent]) {
-				swap(tree[parent], tree[curr]);
-				swap(heap_index[tree[parent].index], heap_index[tree[curr].index]);
-				curr = parent;
-			}
-			else {
-				break;
-			}
-		}
-	}
-
-	void downdate(int curr) {
-		int child, left, right;
-		while (curr * 2 <= size) {
-			left = curr * 2;
-			right = curr * 2 + 1;
-
-			if (right > size || tree[left] < tree[right]) {
-				child = left;
-			}
-			else {
-				child = right;
-			}
-
-			if (tree[child] < tree[curr]) {
-				swap(tree[child], tree[curr]);
-				swap(heap_index[tree[child].index], heap_index[tree[curr].index]);
-				curr = child;
-			}
-			else {
-				break;
-			}
-		}
-	}
-
-	void push(node n) {
-		tree[++size] = n;
-		heap_index[n.index] = size;
-		update(size);
-	}
-
-	void modify(int index, int value) {
-		int curr = heap_index[index];
-		tree[curr].value = value;
-		update(curr);
-		downdate(curr);
-	}
-
-	int top() {
-		return tree[1].index;
-	}
-};
-
-heap h;
-
+Heap hop;
+int n;
 int main() {
-
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-	int N, M;
-	int cmd, idx, num;
-	
-	node temp;
-	h.init();
-
-	cin >> N;
-
-	for (int i = 1; i <= N; i++) {
-		temp.index = i;
-		cin >> temp.value;
-		h.push(temp);
-	}
-
-	cin >> M;
-
-	for (int i = 1; i <= M; i++) {
-		cin >> cmd;
-		if (cmd == 1) {
-			cin >> idx >> num;
-			h.modify(idx, num);
-		}
-		else if (cmd == 2) {
-			cout << h.top() << "\n";
-		}
-	}
-	return 0;
+    int i, j, k;
+    scanf("%d", &n);
+    hop.inil();
+    for (i = 1; i <= n; i++) {
+        scanf("%d", &j);
+        hop.push(j, i);
+    }
+    scanf("%d", &n);
+    while (n--) {
+        int type;
+        scanf("%d", &type);
+        if (type == 2) {
+            printf("%d\n", hop.top().second);
+        }
+        else {
+            scanf("%d %d", &i, &j);
+            hop.update_direct(i, j);
+        }
+    }
 }
