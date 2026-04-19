@@ -5,7 +5,10 @@ using namespace std;
 int main() {
 
 	cin.tie(NULL);
-	ios_base::sync_with_stdio(false);
+	cin.sync_with_stdio(false);
+
+	cout.tie(NULL);
+	cout.sync_with_stdio(false);
 
 	int n, a, b;
 	cin >> n;
