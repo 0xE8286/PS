@@ -36,10 +36,6 @@ bool merge(int v1, int v2) {
 
 int main(){
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> V >> E;
 	while (V != 0 && E != 0) {
 		int sum = 0;
