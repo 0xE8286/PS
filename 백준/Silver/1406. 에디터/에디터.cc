@@ -14,11 +14,8 @@ void print() {
 }
 
 int main() {
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> str;
+	
 	for (int i = 0; i < str.size(); i++) {
 		editor.push_back(str[i]);
 	}
