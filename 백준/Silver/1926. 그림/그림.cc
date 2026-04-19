@@ -36,10 +36,6 @@ int dfs(int y, int x) {
 	return size;
 }
 int main() {
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> N >> M;
 	
 	for (int i = 0; i < N; i++) {
