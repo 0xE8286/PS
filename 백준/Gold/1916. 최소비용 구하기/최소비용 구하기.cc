@@ -16,10 +16,6 @@ typedef pair<int, int> e;
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> N >> M;
 
 	for (int i = 0; i <= N; i++) {
@@ -43,6 +39,7 @@ int main() {
 	cost[S] = 0;
 	priority_queue<e, vector<e>, greater<e>> q;
 	q.push(e(0, S));
+	//sum of weight, vertex
 
 	while (!q.empty()) {
 		e now = q.top(); q.pop();
@@ -59,6 +56,8 @@ int main() {
 			}
 		}
 	}
+
 	cout << cost[E] << endl;
+
 	return 0;
 }
