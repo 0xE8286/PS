@@ -1,23 +1,18 @@
 #include <iostream>
-using namespace std;
+using namespace std; 
 
 void star(int n, int i, int j) {
-    if ((i / n) % 3 == 1 && (j / n) % 3 == 1) {
-        cout << ' ';
-        return;
+    if ((i/n) % 3 == 1 && (j/n) % 3 == 1) {
+        cout << " ";
     }
-    if (n / 3 == 0)
-        cout << '*';
-    else
-        star(n / 3, i, j);
+    else {
+        if (n / 3 == 0)
+            cout << "*";
+        else
+            star(n / 3, i, j);
+    }
 }
 int main() {
-
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    ios::sync_with_stdio(false);
-
     int n;
     cin >> n;
 
