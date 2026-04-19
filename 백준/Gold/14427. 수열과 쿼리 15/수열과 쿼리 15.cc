@@ -19,6 +19,7 @@ struct heap {
 
 	void init() {
 		size = 0;
+		tree[0].value = 2147483647;
 	}
 
 	void update(int curr) {
