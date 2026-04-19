@@ -13,11 +13,11 @@ int TC, N, M;
 
 char map[100][101];
 bool visit[100][100];
-string keys;
-bool key[26];
 
 int dy[4] = { 0, 1, -1, 0 };
 int dx[4] = { 1, 0 , 0, -1 };
+
+string keys;
 int find_cnt;
 
 typedef pair<int, int> pos;
@@ -28,9 +28,6 @@ void clearAll () {
 			map[i][j] = '0';
 			visit[i][j] = 0;
 		}
-	}
-	for (int i = 0; i < 26; i++) {
-		key[i] = false;
 	}
 	find_cnt = 0;
 	keys = "";
@@ -82,9 +79,7 @@ int main() {
 			cin >> map[i];
 		}
 		cin >> keys;
-		for (char k : keys) {
-			if(k>='a' && k<= 'z') key[k - 'a'] = true;
-		}
+
 		vector<pos> entrs;
 		getEntrance(&entrs);
 		
@@ -98,9 +93,10 @@ int main() {
 			int y = q.front().first;
 			int x = q.front().second;
 			q.pop();
+
 			//문을 만나면
 			if (map[y][x] >= 'A' && map[y][x] <= 'Z') {
-				if (!key[(tolower(map[y][x])) - 'a']){
+				if (keys.find(tolower(map[y][x])) == string::npos) {
 					continue;
 				}
 				else {
@@ -109,7 +105,7 @@ int main() {
 			}
 			//열쇠를 만나면
 			else if (map[y][x] >= 'a' && map[y][x] <= 'z') {
-				key[map[y][x] - 'a'] = true;
+				keys.push_back(map[y][x]);
 				map[y][x] = BLANK;
 
 				// 처음부터 다시 탐색
