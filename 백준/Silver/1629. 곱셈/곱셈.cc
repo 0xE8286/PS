@@ -1,25 +1,32 @@
 #include <iostream>
 
 using namespace std;
-using ll = long long;
 
-ll A, B, C;
+int A, B, C;
 
-int pow(ll num, ll n, ll m) {
-	if (n == 1) {
-		return num % m;
+long long pow(int a, int b, int c) {
+	if (b == 1) {
+		return a;
 	}
-	ll num2 = pow(num, n / 2, m);
-    ll ans = (num2 * num2) % m;
-    
-	if (n % 2 == 0) {
-		return ans;
+	else {
+		long long temp = pow(a, b / 2, c);
+		long long ans = (temp * temp) % c;
+		
+		if (b % 2 == 0)
+			return ans;
+		else
+			return (ans * a) % c;
 	}
-	return (ans * num) % m;
 }
 
-int main() {
+int main(void) {
+
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+
 	cin >> A >> B >> C;
-	cout << pow(A, B, C);
+
+	cout << pow(A % C, B, C);
+
 	return 0;
 }
