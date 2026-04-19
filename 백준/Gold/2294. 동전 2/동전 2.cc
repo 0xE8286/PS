@@ -1,42 +1,39 @@
 #include <iostream>
-#include <set>
-#include <algorithm>
-
-#define MAX 999999
+#define MAX_K 100001
 
 using namespace std;
 
-set<int> wallet;
-int ans[10001];
+int N, K;
+int coin[101];
+int dp[MAX_K];
 
-int N, K, coin;
+int min(int a, int b) {
+	if (a <= b)
+		return a;
+	return b;
+}
 
-int main() {
-
-	cin.tie(nullptr);
-	cout.tie(nullptr);
+int main(void) {
+    cin.tie(NULL);
 	ios::sync_with_stdio(false);
-	
+    
 	cin >> N >> K;
 
-	for (int i = 0; i < N; i++) {
-		cin >> coin;
-		wallet.insert(coin);
+	for (int i = 1; i <= N; i++) {
+		cin >> coin[i];
 	}
 	for (int i = 1; i <= K; i++) {
-		ans[i] = MAX;
+		dp[i] = MAX_K;
 	}
-	for (auto iter = wallet.begin(); iter != wallet.end(); iter++) {
-		for (int i = *iter; i <= K; i++) {
-			ans[i] = min(ans[i - *iter] + 1, ans[i]);
+	
+	for (int i = 1; i <= N; i++) {
+		for (int j = coin[i]; j <= K; j++) {
+			dp[j] = min(dp[j], dp[j - coin[i]] + 1);
 		}
 	}
 
-	if (ans[K] == MAX) {
-		cout << -1;
-	}
-	else {
-		cout << ans[K];
-	}
+	if (dp[K] == MAX_K) dp[K] = -1;
+	cout << dp[K];
+
 	return 0;
 }
