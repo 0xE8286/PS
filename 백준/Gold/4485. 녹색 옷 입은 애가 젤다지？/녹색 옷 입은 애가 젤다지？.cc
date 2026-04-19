@@ -23,10 +23,6 @@ bool isValid(int y, int x) {
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	int tc = 1;
 
 	while (true) {
