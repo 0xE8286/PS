@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -43,6 +44,7 @@ int second_mode(vector<int> param) {
 		return modes[0];
 	}
 	else {
+		sort(modes.begin(), modes.end());
 		return modes[1];
 	}
 }
@@ -71,5 +73,6 @@ int main() {
 	cout << mode << endl;
 	cout << diff << endl;
 	
+
 	return 0;
 }
