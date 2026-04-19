@@ -1,32 +1,27 @@
 #include <iostream>
 using namespace std;
 
-int T;
-int N;
-int fibo[41][2];
+int T, N ;
+int dp[41][2];
 
-int main(void) {
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
-
+int main() {
 	cin >> T;
 
-	for (int tc = 0; tc < T; tc++) {
+	dp[0][0] = 1;
+	dp[0][1] = 0;
+
+	dp[1][0] = 0;
+	dp[1][1] = 1;
+	
+	for (int test_case = 1; test_case <= T; test_case++) {
 		cin >> N;
-
-		fibo[0][0] = 1;
-		fibo[0][1] = 0;
-
-		fibo[1][0] = 0;
-		fibo[1][1] = 1;
-
-		for (int i = 2; i <= N; i++) {
-			fibo[i][0] = fibo[i - 1][0] + fibo[i - 2][0];
-			fibo[i][1] = fibo[i - 1][1] + fibo[i - 2][1];
+		for (int n = 2; n <= N; n++) {
+			if (dp[n][0] == 0) {
+				dp[n][0] = dp[n - 1][0] + dp[n - 2][0];
+				dp[n][1] = dp[n - 1][1] + dp[n - 2][1];
+			}
 		}
-
-		cout << fibo[N][0] << " " << fibo[N][1] << endl;
+		cout << dp[N][0] << " " << dp[N][1] << endl;
 	}
-	   
 	return 0;
 }
