@@ -18,10 +18,6 @@ int prevv[1001];
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> N >> M;
 	for (int y = 1; y <= N; y++) {
 		for (int x = 1; x <= N; x++) {
