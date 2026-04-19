@@ -22,10 +22,6 @@ vector<pair<int, int>> edge[MAX_N];
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> N >> M;
 	cin >> J >> K;
 
