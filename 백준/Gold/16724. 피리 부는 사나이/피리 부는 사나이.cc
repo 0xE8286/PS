@@ -56,8 +56,6 @@ void dfs(int y, int x) {
 }
 
 int main() {
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
 	cin >> N >> M;
 	for (int i = 0; i < N; i++) {
 		cin >> map[i];
