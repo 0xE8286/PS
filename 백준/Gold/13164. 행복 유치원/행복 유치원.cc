@@ -6,11 +6,15 @@ using namespace std;
 int N, K;
 
 int main() {
+	cin.tie(NULL);
+	cout.tie(NULL);
+	ios::sync_with_stdio(false);
 
 	cin >> N >> K;
 	
-	vector<int> diff;
+	vector<int> cost;
 	int prev, curr;
+	int sum = 0;
 	
 	for (int i = 0; i < N; i++) {
 		cin >> curr;
@@ -18,23 +22,23 @@ int main() {
 			prev = curr;
 			continue;
 		}
-		diff.push_back(curr-prev);
+		int diff = curr - prev;
+
+		sum += diff;
+		cost.push_back(diff);
+		
 		prev = curr;
 	}
 
-	sort(diff.begin(), diff.end(), greater<>());
+	sort(cost.begin(), cost.end(), greater<>());
 
-	int sum = 0; int max_cost = 0; int cnt = 0;
+	int remove_cost = 0;
 
-	for (auto d : diff) {
-		sum += d;
-		if (cnt < K-1) {
-			max_cost += d;
-			cnt++;
-		}
+	for (int i = 0; i < K - 1; i++) {
+		remove_cost += cost[i];
 	}
 
-	cout << sum - max_cost;
+	cout << sum - remove_cost;
 
 	return 0;
 }
