@@ -1,53 +1,63 @@
 #include <iostream>
+
+#define MAX_N 1000000
+
 using namespace std;
 
-int N;
-int num[1000001];
-int temp[1000001];
+void merge(int *num, int start, int mid, int end) {
+	int temp_i = start;
+	int left_i = start;
+	int right_i = mid + 1;
+	int temp[MAX_N];
 
-void merge(int start, int mid, int end) {
-	int li = start;
-	int ri = mid + 1;
-	int ti = start;
-
-	while (li <= mid && ri <= end) {
-		temp[ti++] = (num[li] < num[ri]) ? num[li++] : num[ri++];
+	while (left_i <= mid && right_i <= end) {
+		if (num[left_i] < num[right_i])
+			temp[temp_i++] = num[left_i++];
+		else
+			temp[temp_i++] = num[right_i++];
 	}
-	while (li <= mid) {
-		temp[ti++] = num[li++];
+	if (left_i <= mid) {
+		for (int i = left_i; i <= mid; i++) {
+			temp[temp_i++] = num[i];
+		}
 	}
-	while (ri <= end) {
-		temp[ti++] = num[ri++];
+	else {
+		for (int i = right_i; i <= end; i++) {
+			temp[temp_i++] = num[i];
+		}
 	}
 	for (int i = start; i <= end; i++) {
 		num[i] = temp[i];
 	}
 }
 
-void divide(int start, int end) {
-	if (start >= end) {
-		return;
+void merge_sort(int* num, int start, int end) {
+	int mid;
+	if (start < end) {
+		mid = (start + end) / 2;
+		merge_sort(num, start, mid);
+		merge_sort(num, mid+1, end);
+		merge(num, start, mid, end);
 	}
-	int mid = (start + end) / 2;
-	divide(start, mid);
-	divide(mid + 1, end);
-	merge(start, mid, end);
 }
 
-int main(void) {
-	ios::sync_with_stdio(false);
+int main() {
 	cin.tie(NULL);
-	cout.tie(NULL);
+	ios::sync_with_stdio(false);
 
-	cin >> N;
-	for (int i = 0; i < N; i++) {
-		cin >> num[i];
+	int n;
+	cin >> n;
+
+	int a[MAX_N];
+	
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
 	}
 
-	divide(0, N - 1);
+	merge_sort(a, 0, n-1);
 
-	for (int i = 0; i < N; i++) {
-		cout << num[i] << "\n";
+	for (int i = 0; i < n; i++) {
+		cout << a[i] << " ";
 	}
 
 	return 0;
