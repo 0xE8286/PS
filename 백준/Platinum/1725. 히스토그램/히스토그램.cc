@@ -2,7 +2,7 @@
 using namespace std;
 
 int N;
-long long h[100000];
+long long h[100001];
 
 long long getSize(long long s, long long e) {
 	if (s == e) return 0;
@@ -19,7 +19,7 @@ long long getSize(long long s, long long e) {
 
 	while ((r - l + 1) < e - s) {
 		long long lh = (l > s) ? min(height, h[l - 1]) : -1;
-		long long rh = (r < e - 1) ?  min(height, h[r + 1]) : -1;
+		long long rh = (l < e - 1) ?  min(height, h[r + 1]) : -1;
 		if (lh >= rh) {
 			height = lh;
 			l--;
