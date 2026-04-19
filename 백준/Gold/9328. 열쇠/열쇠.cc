@@ -22,7 +22,7 @@ int find_cnt;
 
 typedef pair<int, int> pos;
 
-void clearAll() {
+void clearAll () {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
 			map[i][j] = '0';
@@ -71,23 +71,23 @@ vector<pos>* getEntrance(vector<pos>* vec) {
 }
 
 int main() {
-	cin.tie(NULL); cout.tie(NULL);
+	cin.tie(NULL);
 	ios::sync_with_stdio(false);
 
 	cin >> TC;
 	for (int tc = 0; tc < TC; tc++) {
 		cin >> N >> M;
-
+		
 		for (int i = 0; i < N; i++) {
 			cin >> map[i];
 		}
 		cin >> keys;
 		for (char k : keys) {
-			if (k >= 'a' && k <= 'z') key[k - 'a'] = true;
+			if(k>='a' && k<= 'z') key[k - 'a'] = true;
 		}
 		vector<pos> entrs;
 		getEntrance(&entrs);
-
+		
 		queue<pos> q;
 		for (pos start : entrs) {
 			visit[start.first][start.second] = true;
@@ -100,7 +100,7 @@ int main() {
 			q.pop();
 			//문을 만나면
 			if (map[y][x] >= 'A' && map[y][x] <= 'Z') {
-				if (!key[(tolower(map[y][x])) - 'a']) {
+				if (!key[(tolower(map[y][x])) - 'a']){
 					continue;
 				}
 				else {
@@ -137,7 +137,7 @@ int main() {
 				}
 			}
 		}
-		cout << find_cnt << '\n';
+		cout << find_cnt << endl;
 		clearAll();
 	}
 	return 0;
