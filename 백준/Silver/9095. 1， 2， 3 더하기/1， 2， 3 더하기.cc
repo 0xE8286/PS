@@ -1,28 +1,39 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-int way[11];
-int T, N;
+int T = 0;
+int N = 0;
 
-int main() {
+int sum = 0;
+int cnt = 0;
 
-	cin.tie(nullptr);
-	cout.tie(nullptr);
-	ios::sync_with_stdio(false);
-
-	way[1] = 1;
-	way[2] = 2;
-	way[3] = 4;
-
-	for (int i = 4; i <= 10; i++) {
-		way[i] = way[i-1] + way[i-2] + way[i-3];
+void dfs(int num){
+	if (sum >= N){
+		if (sum == N)
+			cnt++;
+		return;
 	}
+	else {
+		for (int i = 1; i <= 3; i++){
+			sum += i;
+			dfs(sum + i);
+			sum -= i;
+		}
+	}
+}
 
-	cin >> T;
-	for (int i = 0; i < T; i++) {
+int main(){
+	
+	cin >> T ;
+	for (int i = 0; i < T; i++){
 		cin >> N;
-		cout << way[N] << '\n';
-	}
 
+		sum = 0;
+		cnt = 0;
+
+		dfs(0);
+		cout << cnt << endl;
+	}
+	
 	return 0;
 }
