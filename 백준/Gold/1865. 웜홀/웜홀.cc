@@ -11,10 +11,6 @@ int S, E, T;
 
 int main() {
 
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> TC;
 	for (int tc = 1; tc <= TC; tc++) {
 		vector<pii> graph[501];
