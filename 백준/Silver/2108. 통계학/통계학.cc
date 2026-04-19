@@ -1,0 +1,75 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+vector<int> number;
+vector<int> sorted;
+int N;
+int input;
+
+int average(vector<int> param) {
+	int sum = 0;
+	int size = param.size();
+	for (int i = 0; i < size; i++) {
+		sum += param[i];
+	}
+	double ave = (float)sum / size;
+	return round(ave);
+}
+int second_mode(vector<int> param) {
+	int count[8001] = { 0, };
+	for (int i = 0; i < param.size(); i++) {
+		count[4000 + param[i]]++;
+	}
+	int mode_cnt = 0;
+	for (int i = 0; i < 8001; i++) {
+		if (count[i] > mode_cnt) {
+			mode_cnt = count[i];
+		}
+	}
+	vector<int> modes;
+	for (int i = 0; i < 8001; i++) {
+		int org = i - 4000;
+		for (int j = 0; j < count[i]; j++) {
+			sorted.push_back(org);
+		}
+		if (count[i] == mode_cnt) {
+			modes.push_back(org);
+		}
+	}
+	if (modes.size() == 1) {
+		return modes[0];
+	}
+	else {
+		return modes[1];
+	}
+}
+
+int main() {
+
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	ios::sync_with_stdio(false);
+
+	cin >> N;
+
+	for (int i = 0; i < N; i++) {
+		cin >> input;
+		number.push_back(input);
+	}
+
+	int ave = average(number);
+	int mode = second_mode(number);
+	int mid = sorted[(sorted.size() - 1) / 2];
+	int diff = sorted[sorted.size() - 1] - sorted[0];
+
+	cout << ave << endl;
+	cout << mid << endl;
+	cout << mode << endl;
+	cout << diff << endl;
+	
+	return 0;
+}
