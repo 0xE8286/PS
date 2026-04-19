@@ -16,11 +16,11 @@ int main() {
 
 	p[N] = 0;
 
-	for (int i = N; i >= 1; i--) {
-		if (i % 3 == 0) {
+	for (int i = N; i >= 2; i--) {
+		if (i % 3 == 0 && (int)i / 3 > 0) {
 			p[i / 3] = min(p[i / 3], p[i] + 1);
 		}
-		if (i % 2 == 0) {
+		if (i % 2 == 0 && (int)i / 2 > 0) {
 			p[i / 2] = min(p[i / 2], p[i] + 1);
 		}
 		p[i - 1] = min(p[i - 1], p[i] + 1);
