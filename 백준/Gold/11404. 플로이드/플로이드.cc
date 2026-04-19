@@ -1,7 +1,5 @@
 #include <iostream>
-#include <cmath>
 #define LARGE 987654321
-#define NA -1
 
 using namespace std;
 
@@ -10,10 +8,6 @@ int from, to, weight;
 int graph[101][101];
 
 int main() {
-
-	cin.tie(NULL);
-	cout.tie(NULL);
-	ios::sync_with_stdio(false);
 
 	cin >> N >> M;
 
