@@ -20,9 +20,6 @@ bool isWall(int y, int x) {
 }
 
 int main(void) {
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
-
 	cin >> M >> N;
 	for (int i = 0; i < N; i++) {
 		cin >> map[i];
