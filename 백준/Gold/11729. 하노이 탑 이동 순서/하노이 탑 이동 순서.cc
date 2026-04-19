@@ -1,23 +1,36 @@
 #include <iostream>
 using namespace std;
 
-void hanoi(int n, int from, int to) {
+void hanoi(int n, int from, int to, int by) {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+
 	if (n == 1) {
-		cout << from << ' ' << to << '\n';
+		cout << from << " " << to << "\n";
 		return;
 	}
-	hanoi(n - 1, from, 6-from-to);
-	cout << from << ' ' << to << '\n';
-	hanoi(n - 1, 6 - from - to, to);
+	hanoi(n - 1, from, by, to);
+	cout << from << " " << to << "\n";
+	hanoi(n - 1, by, to, from);
 }
 
-int main() {
+int count(int n) {
+	int sum = 1;
+	for (int i = 0; i < n; i++) {
+		sum = sum * 2;
+	}
+	return sum - 1;
+}
 
-	int N;
-	cin >> N;
+int main(void) {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
 
-	cout << (1 << N) - 1 << '\n';
-	hanoi(N, 1, 3);
-	
+	int n;
+	cin >> n;
+
+	cout << count(n) << "\n";
+	hanoi(n, 1, 3, 2);
+
 	return 0;
 }
