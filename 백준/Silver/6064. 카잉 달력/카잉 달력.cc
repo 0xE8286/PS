@@ -17,10 +17,6 @@ int lcm(int a, int b) {
 
 int main() {
 
-	cin.tie(nullptr);
-	cout.tie(nullptr);
-	ios::sync_with_stdio(false);
-
 	int T;
 	int M, N, X, Y;
 	cin >> T;
